@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Page - {{ title }}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/icon.png">
+  </head>
+
+  <body>
+    <div class="main-content">
+
+      {{> header }}
+
+      <h2>Get weather at location</h2>
+      <form id="form1" action="">
+        <input type="text" name="" value="" placeholder="Location">
+        <button type="submit" name="button">Find</button>
+      </form>
+      
+      <p>or</p>
+
+      <h2>Get my current location's weather</h2>
+      <form id="form2" action="">
+        <button type="submit" id="locate">Find</button>
+      </form>
+
+      <p id="msg1"></p>
+      <p id="msg2"></p>
+
+    </div>
+    {{> footer }}
+
+    <script type="text/javascript" src="/js/app.js"></script>
+
+  </body>
+
+</html>
