@@ -68,7 +68,7 @@ app.get("/help/*", (req, res) => {
 app.get("/weather", (req, res) => {
 
   // Call the geocode module with default object parameter to avoid error
-  geocode(req.query.address, (err, { latitude, longitude, city, state, country } = {}) => {
+  geocode(req.query.address, (err, { latitude, longitude, place_name } = {}) => {
 
     // Catch geocode module errors
     if (err) return res.send({ error: err });
@@ -80,7 +80,7 @@ app.get("/weather", (req, res) => {
       if (err) return res.send({ error: err });
 
       // Add location to response object
-      forecastData.location = city + ", " + country;
+      forecastData.location = place_name;
 
       // Send data to client
       res.send(forecastData);

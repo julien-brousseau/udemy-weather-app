@@ -9,7 +9,7 @@ const $tomorrow = document.querySelector("#msg2");
 document.querySelector("#form1").addEventListener("submit", async e => {
 
   // Clear text fields
-  $today.textContent = "Loading ...";
+  $today.textContent = "Fetching weather data ...";
   $tomorrow.textContent = "";
 
   // Prevent default submit action
