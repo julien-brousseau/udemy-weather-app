@@ -25,10 +25,14 @@ document.querySelector("#form1").addEventListener("submit", e => {
       if (data.error)
         msg1.textContent = data.error;
 
-      // Write data in correponding fields
+      // Write weather forecast in correponding fields
       else {
-        msg1.textContent = data.location;
-        msg2.textContent = "Temperature is " + data.temperature + "°C, forecast is " + data.summary.toLowerCase();
+        msg1.innerHTML = `The current temperature in ${data.location} is ${data.today.temperature}°C
+          (feels like ${data.today.apparent}°C).<br> The current weather is ${data.today.now.toLowerCase()},
+          and today's forecast is ${data.today.forecast.toLowerCase()}`;
+
+        msg2.innerHTML = `Tomorrow's forecast is ${data.tomorrow.forecast.toLowerCase()} <br>
+          The temperature will be ${data.tomorrow.tempMin}-${data.tomorrow.tempMin}°C, with a ${data.tomorrow.precip}% chance of ${data.tomorrow.precipType}`;
       }
     });
 

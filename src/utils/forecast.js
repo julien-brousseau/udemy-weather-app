@@ -1,19 +1,25 @@
+/*
+  Forecast module
+  Takes latitude and longitude arguments, with a callback function (error, data)
+  Returns an object containing the weather data for the location
+*/
+
 // Dependancies
 const request = require("request");
 
-// Returns a weather object based on coordinates, or an error string
+// Export object
 const forecast = (latitude, longitude, callback) => {
 
   // Darksky API token
   const token = process.env.DARKSKY_API;
 
-  // URL Options
+  // URL Parameters - coordinates and units
   const tail = latitude + "," + longitude + "?units=si";
 
-  // Complete URL
+  // Complete request URL
   const url = "https://api.darksky.net/forecast/" + token + tail;
 
-  // HTTP request for the Darksky API
+  // HTTP request to the Darksky API
   request({ url, json: true }, (err, { body }) => {
 
     // Check for errors from Request
@@ -24,12 +30,26 @@ const forecast = (latitude, longitude, callback) => {
     } else if (body.error) {
       callback("Invalid location", undefined);
 
-    // Return the temperature and summary, with error argument undefined
+    // Forecast object for today and tomorrow
     } else {
-      callback(undefined, {
-        temperature: Math.ceil(body.currently.temperature),
-        summary: body.daily.data[0].summary
-      })
+      const data = {
+        today: {
+          forecast: body.hourly.summary,
+          now: body.currently.summary,
+          temperature: Math.ceil(body.currently.temperature),
+          apparent: Math.ceil(body.currently.apparentTemperature),
+        },
+        tomorrow: {
+          forecast: body.daily.data[1].summary,
+          tempMax: Math.ceil(body.daily.data[1].temperatureHigh),
+          tempMin: Math.ceil(body.daily.data[1].temperatureLow),
+          precip: body.daily.data[1].precipProbability * 100,
+          precipType: body.daily.data[1].precipType,
+        }
+      }
+
+      // Return the forecast object
+      callback(undefined, data);
     }
 
   });
