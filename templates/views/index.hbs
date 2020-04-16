@@ -12,23 +12,16 @@
 
       {{> header }}
 
-      <h2>Get weather at location</h2>
       <form id="form1" action="">
-        <input type="text" name="" value="" placeholder="Location">
-        <button type="submit" name="button">Find</button>
-      </form>
-      
-      <p>or</p>
-
-      <h2>Get my current location's weather</h2>
-      <form id="form2" action="">
-        <button type="submit" id="locate">Find</button>
+        <input type="text" name="" value="" placeholder="Search for your location, or leave empty to use your current location">
+        <button type="submit" name="button">Get the weather forecast</button>
       </form>
 
-      <p id="msg1"></p>
-      <p id="msg2"></p>
+      <p class="forecast" id="msg1"></p>
+      <p class="forecast" id="msg2"></p>
 
     </div>
+
     {{> footer }}
 
     <script type="text/javascript" src="/js/app.js"></script>

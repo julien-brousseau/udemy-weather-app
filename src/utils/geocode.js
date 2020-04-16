@@ -1,3 +1,9 @@
+/*
+  Geocode module
+  Takes an address string and returns an object containing the
+  coordinates, the city and country of the searched location
+*/
+
 // Dependancies
 const request = require("request");
 
@@ -14,6 +20,7 @@ const geocode = (address, callback) => {
   // Complete URL
   const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     + encodeURIComponent(address) + ".json?access_token=" + token + tail;
+  console.log(url);
 
   // HTTP request to Mapbox API
   request({ url, json: true }, (err, { body }) => {
@@ -32,8 +39,7 @@ const geocode = (address, callback) => {
           latitude: body.features[0].center[1],
           longitude: body.features[0].center[0],
           city: body.features[0].text,
-          state: body.features[0].context[0].text,
-          country: body.features[0].context[1].text,
+          country: body.features[0].context[1].text
         })
       }
   });

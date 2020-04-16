@@ -43,7 +43,7 @@ const forecast = (latitude, longitude, callback) => {
           forecast: body.daily.data[1].summary,
           tempMax: Math.ceil(body.daily.data[1].temperatureHigh),
           tempMin: Math.ceil(body.daily.data[1].temperatureLow),
-          precip: body.daily.data[1].precipProbability * 100,
+          precip: Math.ceil(body.daily.data[1].precipProbability * 100),
           precipType: body.daily.data[1].precipType,
         }
       }

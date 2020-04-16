@@ -67,11 +67,6 @@ app.get("/help/*", (req, res) => {
 // Main route called with the form button- JSON response for geolocation + weather query
 app.get("/weather", (req, res) => {
 
-  // Catch missing address
-  // TODO: Defaullt behavior for browser geoloc
-  if (!req.query.address)
-    return res.send({ error: "Missing address" });
-
   // Call the geocode module with default object parameter to avoid error
   geocode(req.query.address, (err, { latitude, longitude, city, state, country } = {}) => {
 
@@ -81,38 +76,17 @@ app.get("/weather", (req, res) => {
     // Call forecast module if address is valid
     forecast(latitude, longitude, (err, forecastData) => {
 
-      forecastData.location = city + ", " + country;
-
-      console.log(forecastData);
-
       // Catch forecast module errors
       if (err) return res.send({ error: err });
 
-      // Send data
+      // Add location to response object
+      forecastData.location = city + ", " + country;
+
+      // Send data to client
       res.send(forecastData);
 
     })
   })
-});
-
-// JSON response for local weather based on browser location
-app.get("/localWeather", (req, res) => {
-
-  // Call forecast module if address is valid
-  forecast(req.query.latitude, req.query.longitude, (err, forecastData) => {
-
-    // Catch forecast module errors
-    if (err) return res.send({ error: err });
-
-    // Send data
-    res.send({
-      summary: forecastData.summary,
-      temperature: forecastData.temperature,
-      location: "Weather at your current location: ",
-    });
-
-  })
-
 });
 
 // 404 route for anything else
