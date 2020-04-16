@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "env-cmd -f ./config/tokens.env node src/app.js",
+    "weather-server": "env-cmd -f ./config/tokens.env node src/app.js",
     "dev": "env-cmd -f ./config/tokens.env nodemon src/app.js -e js,hbs"
   },
   "keywords": [],
