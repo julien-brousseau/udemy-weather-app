@@ -23,9 +23,15 @@ document.querySelector("#form1").addEventListener("submit", async e => {
     var getPosition = function (options) {
       return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, options));
     }
-    await getPosition()
-      .then((position) => addressValue = position.coords.longitude + "," + position.coords.latitude )
-      .catch((err) => console.error(err.message));
+
+    // Change address value for browser location coordinates
+    await getPosition().then((position) => addressValue = position.coords.longitude + "," + position.coords.latitude )
+
+      // Throw error if browser location is disabled
+      .catch((err) => {
+        $today.textContent = "Error: Unable to access browser location."
+        throw new Error(err.message);
+      });
   }
 
   // Fetch the JSON weather route

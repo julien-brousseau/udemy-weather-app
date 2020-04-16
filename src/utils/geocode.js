@@ -20,7 +20,6 @@ const geocode = (address, callback) => {
   // Complete URL
   const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     + encodeURIComponent(address) + ".json?access_token=" + token + tail;
-  console.log(url);
 
   // HTTP request to Mapbox API
   request({ url, json: true }, (err, { body }) => {
