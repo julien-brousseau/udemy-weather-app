@@ -8,7 +8,7 @@ You need both a Mapbox and Darksky API token to use the application.
 Declare these tokens in the `config/tokens.env`, using the variables `MAPBOX_API` and `DARKSKY_API`.
 
 ## Quick start
-Run the terminal command `npm run weather-server` in the application directory.
+Run the terminal command `npm run weather-server` in the application directory, then visit the page in a web browser.
 
 ## Demo
 [https://jb-udemy-weather-app.herokuapp.com/](https://jb-udemy-weather-app.herokuapp.com/)

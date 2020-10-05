@@ -36,21 +36,21 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather app",
-    name: "Blop!"
+    name: "index"
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About this app",
-    name: "Blop!"
+    name: "about"
   });
 });
 
 app.get("/help", (req, res) => {
   res.render("help", {
     title: "Get some help",
-    name: "Blop!",
+    name: "help",
     helpMsg: "Help page"
   });
 });
@@ -59,7 +59,7 @@ app.get("/help", (req, res) => {
 app.get("/help/*", (req, res) => {
   res.render("404", {
     title: "404",
-    name: "Blop!",
+    name: "help404",
     errorMsg: "Seems like you need some... help?"
   });
 });
@@ -93,7 +93,7 @@ app.get("/weather", (req, res) => {
 app.get("*", (req, res) => {
   res.render("404", {
     title: "404",
-    name: "Blop!",
+    name: "404",
     errorMsg: "Ehh no... just.. just no."
   });
 });
